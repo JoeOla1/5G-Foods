@@ -1,0 +1,313 @@
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+/* ===========================
+   BODY
+=========================== */
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+linear-gradient(
+    rgba(0,0,0,.45),
+    rgba(0,0,0,.45)
+),
+url("../images/login-bg.png") no-repeat;
+background-size: cover;
+background-attachment: scroll;
+background-position: center;
+    overflow:hidden;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+.login-box{
+
+    width:400px;
+    height:auto;
+    padding:25px;
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:25px;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.25);
+
+    animation:fadeIn .8s ease;
+}
+
+/* ===========================
+   LOGO
+=========================== */
+
+
+
+
+h1{
+
+    text-align:center;
+
+    color:rgba(255,255,255,.95);
+
+    font-size:34px;
+
+    font-weight:700;
+
+    letter-spacing:-1px;
+
+    margin-bottom:10px;
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:rgba(255,255,255,.8);
+
+    font-size:15px;
+
+    margin-bottom:35px;
+}
+
+/* ===========================
+   LABELS
+=========================== */
+
+label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:rgba(255,255,255,.85);
+
+    font-size:14px;
+
+    font-weight:500;
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+input{
+
+    width:100%;
+
+    padding:16px;
+
+    margin-bottom:22px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.20);
+
+    color:white;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+input::placeholder{
+
+    color:rgba(255,255,255,.6);
+}
+
+/* Focus */
+
+input:focus{
+
+    border-color:#FB923C;
+
+    box-shadow:
+        0 0 18px rgba(249,115,22,.45);
+
+    background:rgba(255,255,255,.18);
+}
+
+/* ===========================
+   REMEMBER ME
+=========================== */
+
+.options{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.options label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    margin:0;
+}
+
+input[type="checkbox"]{
+
+    width:auto;
+
+    margin:0;
+
+    accent-color:#F97316;
+}
+
+/* ===========================
+   LINKS
+=========================== */
+
+a{
+
+    text-decoration:none;
+
+    color:#FFE2C0;
+
+    transition:.3s;
+}
+
+a:hover{
+
+    color:white;
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+button{
+
+    width:100%;
+
+    padding:17px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #F97316,
+        #FB923C
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 35px #080205;
+}
+
+/* ===========================
+   FOOTER TEXT
+=========================== */
+
+.bottom-text{
+
+    text-align:center;
+
+    margin-top:28px;
+
+    color:rgba(255,255,255,.85);
+
+    font-size:14px;
+}
+
+.bottom-text a{
+
+    color:white;
+
+    font-weight:600;
+}
+
+/* ===========================
+   ANIMATION
+=========================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(30px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+    }
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:480px){
+
+    .login-box{
+
+        width:90%;
+
+        padding:35px 25px;
+    }
+
+    h1{
+
+        font-size:28px;
+    }
+}

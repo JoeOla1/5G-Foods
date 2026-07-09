@@ -1,0 +1,77 @@
+/* =========================================================
+   5G FOODS — ANIMATIONS
+   Subtle fade / slide / hover effects
+   ========================================================= */
+
+/* ---------- Fade Up on Scroll ---------- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children within grids that use fade-up */
+.menu__grid .food-card.is-visible,
+.gallery__grid .gallery__item.is-visible,
+.why-us__grid .feature-card.is-visible,
+.testimonials__grid .testimonial-card.is-visible {
+  transition-delay: calc(var(--stagger-index, 0) * 80ms);
+}
+
+/* ---------- Hero Text Entrance ---------- */
+.hero__content .fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero__content .eyebrow { animation-delay: 0.15s; }
+.hero__title { animation-delay: 0.3s; }
+.hero__tagline { animation-delay: 0.45s; }
+.hero__actions { animation-delay: 0.6s; }
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Scroll Cue Pulse ---------- */
+.hero__scroll-cue span::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-text);
+  animation: scrollCue 2s ease-in-out infinite;
+}
+
+@keyframes scrollCue {
+  0% { top: -100%; }
+  50% { top: 0%; }
+  100% { top: 100%; }
+}
+
+/* ---------- Button Lift + Glow handled via transition in style.css ---------- */
+
+/* ---------- Nav Underline handled via transition in style.css ---------- */
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

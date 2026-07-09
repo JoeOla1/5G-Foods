@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5G Foods — Where Every Bite Tells A Story</title>
+  <meta name="description" content="5G Foods — a premium dining experience. Explore our menu, gallery, and reserve your table." />
+  <link rel="icon" type="image/png" href="images/logo/favicon.png" />
+
+  <!-- Google Fonts: Poppins (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#home" class="navbar__logo" aria-label="5G Foods home">
+        <img src="images/logo/logo.png" alt="5G Foods logo" class="navbar__logo-img" />
+        <span class="navbar__logo-text">5G <em>Foods</em></span>
+      </a>
+
+      <nav class="navbar__nav" id="primaryNav">
+        <ul class="navbar__links">
+          <li><a href="#home" class="nav-link active-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#menu" class="nav-link">Menu</a></li>
+          <li><a href="#gallery" class="nav-link">Gallery</a></li>
+          <li><a href="#reservations" class="nav-link">Reservations</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="navbar__actions">
+        <a href="login.html" class="btn btn--ghost">Login</a>
+        <a href="#reservations" class="btn btn--primary">Book a Table</a>
+      </div>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul class="mobile-menu__links">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#menu" class="nav-link">Menu</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#reservations" class="nav-link">Reservations</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="login.html" class="nav-link">Login</a></li>
+      </ul>
+      <a href="#reservations" class="btn btn--primary btn--block">Book a Table</a>
+    </div>
+  </header>
+
+  <!-- ================= HERO SLIDESHOW ================= -->
+  <section class="hero" id="home">
+    <div class="hero__slider" id="heroSlider">
+      <div class="hero__slide is-active" style="background-image: url('images/login-bg.png');"></div>
+      <div class="hero__slide" style="background-image: url('images/quarter-chicken.png');"></div>
+      <div class="hero__slide" style="background-image: url('images/icecream.png');"></div>
+      <div class="hero__slide" style="background-image: url('images/puff-puff.png');"></div>
+      <div class="hero__slide" style="background-image: url('images/sausage.png');"></div>
+      <div class="hero__slide" style="background-image: url('images/snail.png');"></div>
+      <div class="hero__slide" style="background-image: url('images/white-rice.png');"></div>
+      <div class="hero__slide" style="background-image: url('images/white-spaghetti.png');"></div>
+      <div class="hero__slide" style="background-image: url('images/sliced-bread.png');"></div>
+      <div class="hero__overlay"></div>
+    </div>
+
+    <div class="hero__content">
+      <p class="hero__script fade-up">Good Food, Good Mood</p>
+      <h1 class="hero__title fade-up">5G FOODS</h1>
+      <p class="hero__divider fade-up"><span></span>&#10022;<span></span></p>
+      <p class="hero__tagline fade-up">Where every bite tells a story — bold flavors, open-flame cooking, and a warm room to enjoy them in.</p>
+      <div class="hero__actions fade-up">
+        <a href="#menu" class="btn btn--primary btn--lg">Explore Menu</a>
+        <a href="#reservations" class="btn btn--outline btn--lg">Reserve Table</a>
+      </div>
+    </div>
+
+    <button class="hero__arrow hero__arrow--prev" id="heroPrev" aria-label="Previous slide">&#10094;</button>
+    <button class="hero__arrow hero__arrow--next" id="heroNext" aria-label="Next slide">&#10095;</button>
+
+    <div class="hero__dots" id="heroDots">
+      <button class="hero__dot is-active" data-slide="0" aria-label="Go to slide 1"></button>
+      <button class="hero__dot" data-slide="1" aria-label="Go to slide 2"></button>
+      <button class="hero__dot" data-slide="2" aria-label="Go to slide 3"></button>
+    </div>
+
+    <div class="hero__scroll-cue">
+      <span></span>
+      <p>Scroll</p>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="about" id="about">
+    <div class="container about__grid">
+      <div class="about__text fade-up">
+        <p class="eyebrow">About Us</p>
+        <h2 class="section-title">Welcome to<br />5G Foods</h2>
+        <p class="about__desc">
+          5G Foods started with a simple idea: great food brings people together. Every dish
+          leaving our open kitchen is grilled, plated, and finished by hand — built on bold
+          seasoning, quality cuts, and produce sourced fresh each morning. Come for the flavor,
+          stay for the room.
+        </p>
+        <ul class="about__stats">
+          <li><strong>12+</strong><span>Years of Craft</span></li>
+          <li><strong>40+</strong><span>Signature Dishes</span></li>
+          <li><strong>4.9</strong><span>Guest Rating</span></li>
+        </ul>
+        <a href="#menu" class="btn btn--primary">Discover Our Menu</a>
+      </div>
+
+      <div class="about__media fade-up">
+        <img src="images/5g-front.jpg" alt="5g front view" width="auto" />
+        <div class="about__badge">
+          <span class="about__badge-num">Est.</span>
+          <span class="about__badge-text">2014</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURED MEALS ================= -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <div class="section-head fade-up">
+        <p class="eyebrow">Featured Meals</p>
+        <h2 class="section-title">Crafted With Care,<br />Served With Pride</h2>
+      </div>
+
+      <div class="menu__grid">
+        <article class="food-card fade-up">
+          <div class="food-card__image">
+            <img src="images/quarter-chicken.png" alt="Grilled quarter chicken" />
+          </div>
+          <div class="food-card__body">
+            <div class="food-card__top">
+              <h3 class="food-card__name">Quarter Chicken</h3>
+              <span class="food-card__price">₦4,500</span>
+            </div>
+            <p class="food-card__desc">OFlame-grilled quarter chicken, perfectly seasoned and served hot with fresh salad.</p>
+            <button class="btn btn--outline btn--sm">Order Now</button>
+          </div>
+        </article>
+
+        <article class="food-card fade-up">
+          <div class="food-card__image">
+            <img src="images/login-bg.png" alt="Special Jollof Rice" />
+          </div>
+          <div class="food-card__body">
+            <div class="food-card__top">
+              <h3 class="food-card__name">Special Jollof Rice</h3>
+              <span class="food-card__price">₦3,500</span>
+            </div>
+            <p class="food-card__desc">Smoky Nigerian jollof rice cooked with rich spices and bursting with authentic flavor</p>
+            <button class="btn btn--outline btn--sm">Order Now</button>
+          </div>
+        </article>
+
+        <article class="food-card fade-up">
+          <div class="food-card__image">
+            <img src="images/white-rice.png" alt="White rice" />
+          </div>
+          <div class="food-card__body">
+            <div class="food-card__top">
+              <h3 class="food-card__name">White Rice</h3>
+              <span class="food-card__price">₦3,000</span>
+            </div>
+            <p class="food-card__desc">Steamed long-grain white rice served fresh, perfect with your favorite sauce or stew.</p>
+            <button class="btn btn--outline btn--sm">Order Now</button>
+          </div>
+        </article>
+
+        <article class="food-card fade-up">
+          <div class="food-card__image">
+            <img src="images/snail.png" alt="Snail" />
+          </div>
+          <div class="food-card__body">
+            <div class="food-card__top">
+              <h3 class="food-card__name">Peppered Snail</h3>
+              <span class="food-card__price">₦6,000</span>
+            </div>
+            <p class="food-card__desc">Tender, spicy snail sautéed with peppers, onions, and signature house seasoning.</p>
+            <button class="btn btn--outline btn--sm">Order Now</button>
+          </div>
+        </article>
+
+        <article class="food-card fade-up">
+          <div class="food-card__image">
+            <img src="images/icecream.png" alt="Ice-cream" />
+          </div>
+          <div class="food-card__body">
+            <div class="food-card__top">
+              <h3 class="food-card__name">Vanilla Ice Cream</h3>
+              <span class="food-card__price">₦1,100</span>
+            </div>
+            <p class="food-card__desc">Smooth, creamy vanilla ice cream topped with a sweet cherry for the perfect finish.</p>
+            <button class="btn btn--outline btn--sm">Order Now</button>
+          </div>
+        </article>
+
+        <article class="food-card fade-up">
+          <div class="food-card__image">
+            <img src="images/puff-puff.png" alt="Puff Puff" />
+          </div>
+          <div class="food-card__body">
+            <div class="food-card__top">
+              <h3 class="food-card__name">Puff Puff</h3>
+              <span class="food-card__price">₦800</span>
+            </div>
+            <p class="food-card__desc">Soft, fluffy Nigerian puff puff, fried to golden perfection and lightly sweetened.</p>
+            <button class="btn btn--outline btn--sm">Order Now</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHY CHOOSE US ================= -->
+  <section class="why-us">
+    <div class="container">
+      <div class="section-head fade-up">
+        <p class="eyebrow">Why Choose Us</p>
+        <h2 class="section-title">The 5G Foods Difference</h2>
+      </div>
+
+      <div class="why-us__grid">
+        <div class="feature-card fade-up">
+          <div class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c-2 4-6 6-6 11a6 6 0 0012 0c0-5-4-7-6-11z"/></svg>
+          </div>
+          <h3>Fresh Ingredients</h3>
+          <p>Sourced daily from trusted local partners to guarantee peak flavor in every dish.</p>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a4 4 0 014 4v2a4 4 0 01-8 0V7a4 4 0 014-4z"/><path d="M6 21v-2a6 6 0 0112 0v2"/></svg>
+          </div>
+          <h3>Professional Chefs</h3>
+          <p>A culinary team trained across world-class kitchens, dedicated to precision and taste.</p>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <h3>Fast Service</h3>
+          <p>Attentive, efficient staff ensure every course arrives at exactly the right moment.</p>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20h16"/><path d="M12 4l3 6h-6l3-6z"/><path d="M6 20V13"/><path d="M18 20V13"/></svg>
+          </div>
+          <h3>Luxury Dining</h3>
+          <p>An elegant atmosphere designed to make every visit feel like a special occasion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-head fade-up">
+        <p class="eyebrow">Gallery</p>
+        <h2 class="section-title">A Glimpse Inside 5G Foods</h2>
+      </div>
+
+      <div class="gallery__grid">
+        <div class="gallery__item fade-up"><img src="images/gallery/gallery1.jpg" alt="Signature plated dish" /></div>
+        <div class="gallery__item fade-up"><img src="images/gallery/gallery2.jpg" alt="Dining room ambience" /></div>
+        <div class="gallery__item fade-up"><img src="images/gallery/gallery3.jpg" alt="Handcrafted cocktail" /></div>
+        <div class="gallery__item fade-up"><img src="images/gallery/gallery4.jpg" alt="Open-flame kitchen glow" /></div>
+        <div class="gallery__item fade-up"><img src="images/gallery/gallery5.jpg" alt="Chef's plate detail" /></div>
+        <div class="gallery__item fade-up"><img src="images/gallery/gallery6.jpg" alt="Restaurant interior seating" /></div>
+        <div class="gallery__item fade-up"><img src="images/gallery/gallery7.jpg" alt="Evening cocktail service" /></div>
+        <div class="gallery__item fade-up"><img src="images/gallery/gallery8.jpg" alt="Warm ember lighting detail" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-head fade-up">
+        <p class="eyebrow">Testimonials</p>
+        <h2 class="section-title">What Our Guests Say</h2>
+      </div>
+
+      <div class="testimonials__grid">
+        <div class="testimonial-card glass fade-up">
+          <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-card__review">The tomahawk steak was cooked perfectly, and the room had this warm, easy glow — we stayed for three hours and didn't notice the time.</p>
+          <div class="testimonial-card__author">
+            <img src="images/gallery/avatar1.jpg" alt="Portrait initials for Amara O." />
+            <div>
+              <strong>Amara O.</strong>
+              <span>Verified Guest</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card glass fade-up">
+          <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-card__review">Booked a table for a birthday dinner and the staff made it feel special without being over the top. The lava cake alone is worth the trip.</p>
+          <div class="testimonial-card__author">
+            <img src="images/gallery/avatar2.jpg" alt="Portrait initials for Tunde E." />
+            <div>
+              <strong>Tunde E.</strong>
+              <span>Verified Guest</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card glass fade-up">
+          <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-card__review">Consistent every time we visit — the garden bowl is fresh, the service is fast, and the ambience never misses.</p>
+          <div class="testimonial-card__author">
+            <img src="images/gallery/avatar3.jpg" alt="Portrait initials for Chidi N." />
+            <div>
+              <strong>Chidi N.</strong>
+              <span>Verified Guest</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RESERVATION CTA ================= -->
+  <section class="reservation-cta" id="reservations" style="background-image: url('images/backgrounds/reservation-bg.jpg');">
+    <div class="reservation-cta__overlay"></div>
+    <div class="container reservation-cta__grid">
+
+      <div class="reservation-cta__intro fade-up">
+        <p class="eyebrow">Book Your Table</p>
+        <h2 class="section-title">Make Your<br />Reservation</h2>
+        <p class="reservation-cta__desc">Enjoy a memorable dining experience with the people you love. Pick a date, time, and party size — we'll have your table ready.</p>
+      </div>
+
+      <form class="reservation-form glass fade-up" onsubmit="return false;">
+        <div class="reservation-form__field">
+          <label for="resDate">Select Date</label>
+          <input type="date" id="resDate" name="date" required />
+        </div>
+        <div class="reservation-form__field">
+          <label for="resTime">Select Time</label>
+          <input type="time" id="resTime" name="time" required />
+        </div>
+        <div class="reservation-form__field">
+          <label for="resGuests">No. of Guests</label>
+          <select id="resGuests" name="guests" required>
+            <option value="">Guests</option>
+            <option>1 Guest</option>
+            <option>2 Guests</option>
+            <option>3 Guests</option>
+            <option>4 Guests</option>
+            <option>5+ Guests</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn--primary btn--block">Book Now</button>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= NEWSLETTER ================= -->
+  <section class="newsletter" style="background-image: url('images/backgrounds/newsletter-bg.jpg');">
+    <div class="newsletter__overlay"></div>
+    <div class="container newsletter__content fade-up">
+      <h2 class="section-title">Stay In The Know</h2>
+      <p>Subscribe for updates on new dishes, seasonal menus, and upcoming events.</p>
+      <form class="newsletter__form" onsubmit="return false;">
+        <input type="email" placeholder="Enter your email address" aria-label="Email address" required />
+        <button type="submit" class="btn btn--primary">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer" id="contact">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <img src="images/logo/logo.png" alt="5G Foods logo" class="footer__logo" />
+        <p>Bold flavors, open-flame cooking, and a warm room built for good company.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7c0-1 .5-2 2-2h2V1h-3c-3 0-5 2-5 5v3H6v4h3v8z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 4.5c-.8.4-1.7.7-2.6.8.9-.6 1.6-1.5 2-2.5-.9.5-1.9.9-2.9 1.1A4 4 0 0012.5 8c0 .4 0 .8.1 1.1C8.7 8.9 5.4 7.2 3 4.5c-.4.8-.7 1.7-.7 2.6 0 1.8.9 3.4 2.3 4.3-.8 0-1.6-.2-2.3-.6 0 2.5 1.8 4.6 4.1 5.1-.7.2-1.5.3-2.3.1.6 2 2.5 3.4 4.7 3.5-2 1.5-4.3 2.2-6.8 2 2.4 1.5 5.2 2.4 8.3 2.4 9.9 0 15.3-8.3 15-15.6 1-.7 1.8-1.6 2.4-2.6z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reservations">Reservations</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Opening Hours</h4>
+        <ul class="footer__hours">
+          <li><span>Mon – Fri</span><span>11:00 – 22:00</span></li>
+          <li><span>Sat – Sun</span><span>10:00 – 23:00</span></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li>14 Aba Road, Port Harcourt</li>
+          <li>+234 803 000 1234</li>
+          <li>hello@5gfoods.com</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; <span id="year"></span> 5G Foods. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/navigation.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
