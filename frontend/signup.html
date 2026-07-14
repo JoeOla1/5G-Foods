@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="./css/login-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+<div class="page-logo">
+    <img src="./images/5g logo.jpeg" alt="5g logo" height="100" width="100" style="position: absolute; top: 10px; left: 10px;">
+</div>
+
+    <div class="login-box">
+        <h1>Sign Up</h1>
+        <p class="subtitle">Create an account to start ordering</p>
+
+        <form id="signupForm">
+            <label for="fullName">Full Name</label>
+            <input type="text" required placeholder="Full Name" id="fullName" name="fullName">
+
+            <label for="email">Email</label>
+            <input type="email" required placeholder="Email" id="email" name="email">
+
+            <label for="password">Password</label>
+            <input type="password" required placeholder="Password" minlength="6" id="password" name="password">
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" required placeholder="Confirm Password" minlength="6" id="confirmPassword" name="confirmPassword">
+
+            <div id="signupError" class="form-error"></div>
+            <div id="signupSuccess" class="form-success"></div>
+
+            <div class="login-btn">
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+
+        <div class="divider">or continue with</div>
+
+        <div id="googleButtonContainer" style="display:flex; justify-content:center;"></div>
+    </div>
+
+    <p class="signup-link">
+  Already have an account?
+  <a href="login.html">Login</a>
+</p>
+
+<script src="js/signup.js"></script>
+<script src="js/google-auth.js"></script>
+</body>
+</html>

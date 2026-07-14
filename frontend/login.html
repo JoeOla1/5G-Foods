@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
@@ -19,16 +20,32 @@
     <div class="login-box">
         <h1>Login</h1>
 
-        <label for="email">Email</label>
-        <input type="email" required placeholder="Email" id="email" name="email">
-        
-        <br /><label for="password">Password</label>
-        <input type="password" required name="password" id="password">
+        <form id="loginForm">
+            <label for="email">Email</label>
+            <input type="email" required placeholder="Email" id="email" name="email">
+            
+            <br /><label for="password">Password</label>
+            <input type="password" required name="password" id="password">
 
-        <div class="login-btn">
-        <br /><button type="submit">Login</button>
-        </div>
+            <div id="loginError" class="form-error"></div>
+            <div id="loginSuccess" class="form-success"></div>
+
+            <div class="login-btn">
+            <br /><button type="submit">Login</button>
+            </div>
+        </form>
+
+        <div class="divider">or continue with</div>
+
+        <div id="googleButtonContainer" style="display:flex; justify-content:center;"></div>
     </div>
 
+    <p class="signup-link">
+  Don't have an account?
+  <a href="signup.html">Sign Up</a>
+</p>
+
+<script src="js/login.js"></script>
+<script src="js/google-auth.js"></script>
 </body>
 </html>
