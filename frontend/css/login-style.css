@@ -446,15 +446,19 @@ button:hover{
 
 @media(max-width:480px){
 
+    body{
+        overflow-y:auto;
+        min-height:100vh;
+        height:auto;
+        padding:20px 0;
+    }
+
     .login-box{
-
         width:90%;
-
         padding:35px 25px;
     }
 
     h1{
-
         font-size:28px;
     }
 }
