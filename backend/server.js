@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
 const User = require("./models/User");
 const express = require("express");
@@ -20,6 +21,19 @@ mongoose
 
 const PORT = process.env.PORT || 5000;
 const googleClient = new OAuth2Client("963467298379-vfm1r14822rm8gg9sl3b51lf0knn5dil.apps.googleusercontent.com");
+
+// ---------- JWT HELPER ----------
+function generateToken(user) {
+  return jwt.sign(
+    {
+      id: user._id,
+      fullName: user.fullName,
+      email: user.email,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: "7d" }
+  );
+}
 
 app.get("/", (req, res) => {
   res.send("THIS IS THE CORRECT SERVER");
@@ -58,8 +72,15 @@ app.post("/signup", async (req, res) => {
 
     await newUser.save();
 
+    const token = generateToken(newUser);
+
     res.status(201).json({
       message: "Account created successfully!",
+      token: token,
+      user: {
+        fullName: newUser.fullName,
+        email: newUser.email,
+      },
     });
 
   } catch (error) {
@@ -97,8 +118,11 @@ app.post("/login", async (req, res) => {
       });
     }
 
+    const token = generateToken(user);
+
     res.status(200).json({
       message: "Login successful!",
+      token: token,
       user: {
         fullName: user.fullName,
         email: user.email,
@@ -140,8 +164,11 @@ app.post("/google-auth", async (req, res) => {
       await user.save();
     }
 
+    const jwtToken = generateToken(user);
+
     res.status(200).json({
       message: "Google sign-in successful!",
+      token: jwtToken,
       user: {
         fullName: user.fullName,
         email: user.email,
@@ -153,6 +180,30 @@ app.post("/google-auth", async (req, res) => {
     res.status(401).json({
       message: "Google authentication failed.",
     });
+  }
+});
+
+// ---------- ME (check if token is still valid) ----------
+app.get("/me", async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ message: "No token provided." });
+    }
+
+    const token = authHeader.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    res.status(200).json({
+      user: {
+        fullName: decoded.fullName,
+        email: decoded.email,
+      },
+    });
+
+  } catch (error) {
+    res.status(401).json({ message: "Invalid or expired token." });
   }
 });
 
