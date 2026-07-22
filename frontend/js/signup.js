@@ -3,6 +3,8 @@
    Handles: client-side validation, submission to backend
    ========================================================= */
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
   var form = document.getElementById('signupForm');
@@ -39,8 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Signing up...';
 
-    // NOTE: update this URL to match your backend's actual signup route
-    fetch('http://localhost:5000/signup', {
+    fetch(`${BACKEND_URL}/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ fullName: fullName, email: email, password: password })
@@ -51,13 +52,16 @@ document.addEventListener('DOMContentLoaded', function () {
           return data;
         });
       })
-      .then(function () {
-  successBox.textContent = 'Account created successfully! Redirecting to login...';
-  form.reset();
-  setTimeout(function () {
-    window.location.href = 'login.html';
-  }, 2000);
-})
+      .then(function (data) {
+        // Save the token so the user stays logged in across pages/refreshes
+        localStorage.setItem('token', data.token);
+
+        successBox.textContent = 'Account created successfully! Redirecting...';
+        form.reset();
+        setTimeout(function () {
+          window.location.href = 'index.html';
+        }, 2000);
+      })
       .catch(function (err) {
         errorBox.textContent = err.message || 'Something went wrong. Please try again.';
       })

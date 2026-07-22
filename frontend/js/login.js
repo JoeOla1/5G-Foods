@@ -3,6 +3,8 @@
    Handles: client-side validation, submission to backend
    ========================================================= */
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
   var form = document.getElementById('loginForm');
@@ -28,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Logging in...';
 
-    fetch('http://localhost:5000/login', {
+    fetch(`${BACKEND_URL}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email, password: password })
@@ -40,6 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       })
       .then(function (data) {
+        // Save the token so the user stays logged in across pages/refreshes
+        localStorage.setItem('token', data.token);
+
         successBox.textContent = 'Login successful! Redirecting...';
         setTimeout(function () {
           window.location.href = 'index.html';

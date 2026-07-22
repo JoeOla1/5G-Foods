@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var currentIndex = 0;
   var slideCount = slides.length;
-  var autoRotateDelay = 3000; // 3 seconds
+  var autoRotateDelay = 2000; // 3 seconds
   var autoRotateTimer = null;
 
   function goToSlide(index) {

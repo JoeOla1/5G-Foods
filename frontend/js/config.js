@@ -1,0 +1,1 @@
+const BACKEND_URL = "https://fiveg-foods-backend.onrender.com";

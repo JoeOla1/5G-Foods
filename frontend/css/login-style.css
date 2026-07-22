@@ -27,7 +27,7 @@ linear-gradient(
     rgba(0,0,0,.45),
     rgba(0,0,0,.45)
 ),
-url("../images/login-bg.png") no-repeat;
+url("../images/login-bg.jpg") no-repeat;
 background-size: cover;
 background-attachment: scroll;
 background-position: center;

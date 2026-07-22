@@ -305,6 +305,12 @@ h1, h2, h3, h4 {
   transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 
+.navbar__user {
+  color: #D4A017; /* your warm gold */
+  font-weight: 500;
+  margin-right: 12px;
+}
+
 .mobile-menu {
   display: none;
   flex-direction: column;
