@@ -38,6 +38,10 @@
       </nav>
 
       <div class="navbar__actions" id="navActions">
+        <button class="cart-icon-btn" id="cartIconBtn" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          <span class="cart-icon-btn__count" id="cartCount">0</span>
+        </button>
         <a href="login.html" class="btn btn--ghost">Login</a>
         <a href="#reservations" class="btn btn--primary">Book a Table</a>
       </div>
@@ -58,6 +62,12 @@
         <li><a href="#gallery" class="nav-link">Gallery</a></li>
         <li><a href="#reservations" class="nav-link">Reservations</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li>
+          <button class="cart-icon-btn" id="cartIconBtnMobile" aria-label="Open cart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+            <span class="cart-icon-btn__count" id="cartCountMobile">0</span>
+          </button>
+        </li>
         <li id="mobileNavActions"><a href="login.html" class="nav-link">Login</a></li>
       </ul>
       <a href="#reservations" class="btn btn--primary btn--block">Book a Table</a>
@@ -143,93 +153,9 @@
         <h2 class="section-title">Crafted With Care,<br />Served With Pride</h2>
       </div>
 
-      <div class="menu__grid">
-        <article class="food-card fade-up">
-          <div class="food-card__image">
-            <img src="images/quarter-chicken.jpg" alt="Grilled quarter chicken" />
-          </div>
-          <div class="food-card__body">
-            <div class="food-card__top">
-              <h3 class="food-card__name">Quarter Chicken</h3>
-              <span class="food-card__price">₦4,500</span>
-            </div>
-            <p class="food-card__desc">OFlame-grilled quarter chicken, perfectly seasoned and served hot with fresh salad.</p>
-            <button class="btn btn--outline btn--sm">Order Now</button>
-          </div>
-        </article>
-
-        <article class="food-card fade-up">
-          <div class="food-card__image">
-            <img src="images/login-bg.jpg" alt="Special Jollof Rice" />
-          </div>
-          <div class="food-card__body">
-            <div class="food-card__top">
-              <h3 class="food-card__name">Special Jollof Rice</h3>
-              <span class="food-card__price">₦3,500</span>
-            </div>
-            <p class="food-card__desc">Smoky Nigerian jollof rice cooked with rich spices and bursting with authentic flavor</p>
-            <button class="btn btn--outline btn--sm">Order Now</button>
-          </div>
-        </article>
-
-        <article class="food-card fade-up">
-          <div class="food-card__image">
-            <img src="images/white-rice.jpg" alt="White rice" />
-          </div>
-          <div class="food-card__body">
-            <div class="food-card__top">
-              <h3 class="food-card__name">White Rice</h3>
-              <span class="food-card__price">₦3,000</span>
-            </div>
-            <p class="food-card__desc">Steamed long-grain white rice served fresh, perfect with your favorite sauce or stew.</p>
-            <button class="btn btn--outline btn--sm">Order Now</button>
-          </div>
-        </article>
-
-        <article class="food-card fade-up">
-          <div class="food-card__image">
-            <img src="images/snail.jpg" alt="Snail" />
-          </div>
-          <div class="food-card__body">
-            <div class="food-card__top">
-              <h3 class="food-card__name">Peppered Snail</h3>
-              <span class="food-card__price">₦6,000</span>
-            </div>
-            <p class="food-card__desc">Tender, spicy snail sautéed with peppers, onions, and signature house seasoning.</p>
-            <button class="btn btn--outline btn--sm">Order Now</button>
-          </div>
-        </article>
-
-        <article class="food-card fade-up">
-          <div class="food-card__image">
-            <img src="images/icecream.jpg" alt="Ice-cream" />
-          </div>
-          <div class="food-card__body">
-            <div class="food-card__top">
-              <h3 class="food-card__name">Vanilla Ice Cream</h3>
-              <span class="food-card__price">₦1,100</span>
-            </div>
-            <p class="food-card__desc">Smooth, creamy vanilla ice cream topped with a sweet cherry for the perfect finish.</p>
-            <button class="btn btn--outline btn--sm">Order Now</button>
-          </div>
-        </article>
-
-        <article class="food-card fade-up">
-          <div class="food-card__image">
-            <img src="images/puff-puff.jpg" alt="Puff Puff" />
-          </div>
-          <div class="food-card__body">
-            <div class="food-card__top">
-              <h3 class="food-card__name">Puff Puff</h3>
-              <span class="food-card__price">₦800</span>
-            </div>
-            <p class="food-card__desc">Soft, fluffy Nigerian puff puff, fried to golden perfection and lightly sweetened.</p>
-            <button class="btn btn--outline btn--sm">Order Now</button>
-          </div>
-        </article>
+      <div class="menu__grid" id="menuGrid">
+        <!-- Menu items are loaded dynamically from the backend via js/menu.js -->
       </div>
-    </div>
-  </section>
 
   <!-- ================= WHY CHOOSE US ================= -->
   <section class="why-us">
@@ -445,6 +371,26 @@
     <div class="footer__bottom">
       <p>&copy; <span id="year"></span> 5G Foods. All rights reserved.</p>
     </div>
+  <!-- ================= CART DRAWER ================= -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer__overlay" id="cartDrawerOverlay"></div>
+    <div class="cart-drawer__panel">
+      <div class="cart-drawer__header">
+        <h3>Your Order</h3>
+        <button class="cart-drawer__close" id="cartDrawerClose" aria-label="Close cart">&times;</button>
+      </div>
+      <div class="cart-drawer__items" id="cartDrawerItems">
+        <p class="cart-drawer__empty">Your cart is empty.</p>
+      </div>
+      <div class="cart-drawer__footer">
+        <div class="cart-drawer__total">
+          <span>Total</span>
+          <span id="cartTotal">₦0</span>
+        </div>
+        <button class="btn btn--primary btn--block" id="cartCheckoutBtn">Checkout</button>
+      </div>
+    </div>
+  </div>
   </footer>
 
   <script src="js/navigation.js"></script>
@@ -452,5 +398,7 @@
 <script src="js/main.js"></script>
 <script src="js/config.js"></script>
 <script src="js/auth-ui.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/cart.js"></script>
 </body>
 </html>
