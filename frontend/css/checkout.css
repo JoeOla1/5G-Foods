@@ -1,0 +1,205 @@
+/* =========================================================
+   5G FOODS — CHECKOUT PAGE STYLES
+   Matches existing brand palette:
+   Burnt Orange #CC5500 · Matte Black #121212 · Warm Gold #D4A017
+   Poppins (headings) · Inter (body)
+   ========================================================= */
+
+.checkout-page {
+  background-color: #121212;
+  min-height: 100vh;
+  padding: 140px 24px 80px;
+  color: #F2F0EB;
+}
+
+.checkout-page__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .checkout-page__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- ORDER SUMMARY (receipt-style panel) ---------- */
+.checkout-summary {
+  background: linear-gradient(160deg, #1B1B1B 0%, #141414 100%);
+  border: 1px solid rgba(212, 160, 23, 0.25);
+  border-radius: 12px;
+  padding: 32px 28px;
+}
+
+.checkout-summary h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 24px;
+  color: #F2F0EB;
+  position: relative;
+  padding-bottom: 14px;
+}
+
+.checkout-summary h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background: #D4A017;
+}
+
+.checkout-summary__items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed rgba(212, 160, 23, 0.3);
+}
+
+.checkout-summary__item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #D8D5CE;
+}
+
+.checkout-summary__item span:last-child {
+  color: #F2F0EB;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.checkout-summary__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'Poppins', sans-serif;
+}
+
+.checkout-summary__total span:first-child {
+  font-size: 0.95rem;
+  color: #B8B5AE;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.checkout-summary__total span:last-child {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #D4A017;
+}
+
+/* ---------- DELIVERY FORM ---------- */
+.checkout-form {
+  background: #F7F5F0;
+  border-radius: 12px;
+  padding: 36px 32px;
+  color: #1A1A1A;
+}
+
+.checkout-form h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin: 0 0 26px;
+  color: #121212;
+  position: relative;
+  padding-bottom: 14px;
+}
+
+.checkout-form h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background: #CC5500;
+}
+
+.checkout-form__field {
+  margin-bottom: 20px;
+}
+
+.checkout-form__field label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6B6B6B;
+  margin-bottom: 8px;
+}
+
+.checkout-form__field input,
+.checkout-form__field textarea {
+  width: 100%;
+  padding: 13px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  color: #1A1A1A;
+  background: #FFFFFF;
+  border: 1.5px solid #E0DCD3;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  resize: vertical;
+}
+
+.checkout-form__field input:focus,
+.checkout-form__field textarea:focus {
+  border-color: #D4A017;
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.15);
+}
+
+.checkout-form__field input::placeholder,
+.checkout-form__field textarea::placeholder {
+  color: #A8A49B;
+}
+
+/* ---------- PAY NOW BUTTON ---------- */
+#payNowBtn {
+  margin-top: 8px;
+  background: #CC5500;
+  color: #FFFFFF;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+#payNowBtn:hover:not(:disabled) {
+  background: #B84A00;
+  transform: translateY(-1px);
+}
+
+#payNowBtn:disabled {
+  background: #C9A87A;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- EMPTY / LOADING STATES ---------- */
+.checkout-summary__items p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #A8A49B;
+  margin: 0;
+}
