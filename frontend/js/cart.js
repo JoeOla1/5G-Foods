@@ -14,8 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
   var cartTotal = document.getElementById('cartTotal');
   var cartIconBtn = document.getElementById('cartIconBtn');
   var cartIconBtnMobile = document.getElementById('cartIconBtnMobile');
+  var cartIconBtnFloating = document.getElementById('cartIconBtnFloating');
   var cartCount = document.getElementById('cartCount');
   var cartCountMobile = document.getElementById('cartCountMobile');
+  var cartCountFloating = document.getElementById('cartCountFloating');
   var cartCheckoutBtn = document.getElementById('cartCheckoutBtn');
 
   // Load the cart badge count on every page load (if logged in)
@@ -38,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (cartIconBtn) cartIconBtn.addEventListener('click', openDrawer);
   if (cartIconBtnMobile) cartIconBtnMobile.addEventListener('click', openDrawer);
+  if (cartIconBtnFloating) cartIconBtnFloating.addEventListener('click', openDrawer);
   if (cartDrawerClose) cartDrawerClose.addEventListener('click', closeDrawer);
   if (cartDrawerOverlay) cartDrawerOverlay.addEventListener('click', closeDrawer);
 
@@ -64,7 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(function (data) {
         renderCart(data.cart);
-        cartDrawer.classList.add('is-open');
+        // Drawer no longer auto-opens on add — user opens it manually via cart icon
+        // cartDrawer.classList.add('is-open');
       })
       .catch(function (err) {
         console.error(err);
@@ -115,19 +119,27 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updateCountBadge(cart) {
+    // Only count items that still have a valid menuItem attached
     var totalQty = cart.items.reduce(function (sum, item) {
+      if (!item.menuItem) return sum;
       return sum + item.quantity;
     }, 0);
 
     if (cartCount) cartCount.textContent = totalQty;
     if (cartCountMobile) cartCountMobile.textContent = totalQty;
+    if (cartCountFloating) cartCountFloating.textContent = totalQty;
   }
 
   // ---------- RENDER CART DRAWER ----------
   function renderCart(cart) {
     updateCountBadge(cart);
 
-    if (!cart.items.length) {
+    // Filter out orphaned items (menuItem was deleted from the DB)
+    var validItems = cart.items.filter(function (item) {
+      return !!item.menuItem;
+    });
+
+    if (!validItems.length) {
       cartDrawerItems.innerHTML = '<p class="cart-drawer__empty">Your cart is empty.</p>';
       cartTotal.textContent = '₦0';
       return;
@@ -136,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var total = 0;
     cartDrawerItems.innerHTML = '';
 
-    cart.items.forEach(function (item) {
+    validItems.forEach(function (item) {
       var menuItem = item.menuItem;
       var lineTotal = menuItem.price * item.quantity;
       total += lineTotal;
@@ -165,7 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
     cartDrawerItems.querySelectorAll('.qty-increase').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var id = btn.getAttribute('data-id');
-        var currentItem = cart.items.find((i) => i.menuItem._id === id);
+        var currentItem = validItems.find((i) => i.menuItem._id === id);
+        if (!currentItem) return;
         updateQuantity(id, currentItem.quantity + 1);
       });
     });
@@ -173,7 +186,8 @@ document.addEventListener('DOMContentLoaded', function () {
     cartDrawerItems.querySelectorAll('.qty-decrease').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var id = btn.getAttribute('data-id');
-        var currentItem = cart.items.find((i) => i.menuItem._id === id);
+        var currentItem = validItems.find((i) => i.menuItem._id === id);
+        if (!currentItem) return;
         updateQuantity(id, currentItem.quantity - 1); // 0 removes it (handled by backend)
       });
     });
