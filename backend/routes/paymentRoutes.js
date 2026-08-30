@@ -90,4 +90,26 @@ router.post("/payment/verify", requireAuth, async (req, res) => {
   }
 });
 
+// ---------- FETCH A SINGLE ORDER BY PAYSTACK REFERENCE ----------
+// Used by order-confirmation.html to display order details after checkout
+router.get("/payment/order/:reference", requireAuth, async (req, res) => {
+  try {
+    const { reference } = req.params;
+
+    const order = await Order.findOne({
+      paymentReference: reference,
+      user: req.userId, // scope to the logged-in user so people can't fetch others' orders
+    });
+
+    if (!order) {
+      return res.status(404).json({ message: "Order not found." });
+    }
+
+    res.status(200).json({ order });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch order." });
+  }
+});
+
 module.exports = router;

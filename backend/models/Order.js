@@ -1,51 +1,43 @@
-const mongoose = require('mongoose');
+  function renderOrder(order) {
+    loadingState.classList.add("hidden");
+    errorState.classList.add("hidden");
+    successState.classList.remove("hidden");
 
-const orderItemSchema = new mongoose.Schema({
-  menuItem: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'MenuItem',
-  },
-  name: { type: String, required: true },     // snapshot — in case menu item is edited/deleted later
-  price: { type: Number, required: true },    // snapshot of price at time of order
-  quantity: { type: Number, required: true },
-});
+    document.getElementById("orderRef").textContent = order.paymentReference;
 
-const orderSchema = new mongoose.Schema(
-  {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-    items: [orderItemSchema],
-    totalAmount: {
-      type: Number,
-      required: true,
-    },
-    deliveryDetails: {
-      fullName: { type: String, required: true },
-      phone: { type: String, required: true },
-      email: { type: String, required: true },
-      address: { type: String, required: true },
-      notes: { type: String, default: '' },
-    },
-    paymentReference: {
-      type: String,
-      required: true,
-      unique: true, // prevents the same Paystack reference from being processed twice
-    },
-    paymentStatus: {
-      type: String,
-      enum: ['pending', 'paid', 'failed'],
-      default: 'pending',
-    },
-    orderStatus: {
-      type: String,
-      enum: ['placed', 'preparing', 'out-for-delivery', 'delivered', 'cancelled'],
-      default: 'placed',
-    },
-  },
-  { timestamps: true }
-);
+    const date = new Date(order.createdAt);
+    document.getElementById("orderDate").textContent = date.toLocaleString("en-NG", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
 
-module.exports = mongoose.model('Order', orderSchema);
+    const statusEl = document.getElementById("orderStatus");
+    statusEl.textContent = order.orderStatus;
+    statusEl.classList.add(`status-${order.orderStatus}`);
+
+    const itemsContainer = document.getElementById("orderItems");
+    itemsContainer.innerHTML = order.items
+      .map(
+        (item) => `
+        <div class="order-item-row">
+          <span class="item-qty">${item.quantity}×</span>
+          <span class="item-name">${item.name}</span>
+          <span class="item-price">₦${(item.price * item.quantity).toLocaleString("en-NG")}</span>
+        </div>
+      `
+      )
+      .join("");
+
+    document.getElementById("orderTotal").textContent = `₦${order.totalAmount.toLocaleString("en-NG")}`;
+
+    const dd = order.deliveryDetails || {};
+    const deliveryContainer = document.getElementById("deliveryDetails");
+    deliveryContainer.innerHTML = `
+      <h3>Delivery Details</h3>
+      <p><strong>Name:</strong> ${dd.fullName}</p>
+      <p><strong>Phone:</strong> ${dd.phone}</p>
+      <p><strong>Email:</strong> ${dd.email}</p>
+      <p><strong>Address:</strong> ${dd.address}</p>
+      ${dd.notes ? `<p><strong>Notes:</strong> ${dd.notes}</p>` : ""}
+    `;
+  }

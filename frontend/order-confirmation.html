@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed | 5G Foods</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/order-confirmation.css" />
+</head>
+<body>
+
+  <main class="confirmation-page">
+    <div class="confirmation-card" id="confirmationCard">
+
+      <!-- Loading state -->
+      <div id="loadingState" class="state-block">
+        <div class="spinner"></div>
+        <p>Fetching your order...</p>
+      </div>
+
+      <!-- Error state -->
+      <div id="errorState" class="state-block hidden">
+        <div class="error-icon">!</div>
+        <h2>We couldn't find that order</h2>
+        <p id="errorMessage">Something went wrong loading your order details.</p>
+        <a href="index.html" class="btn-primary">Back to Home</a>
+      </div>
+
+      <!-- Success state -->
+      <div id="successState" class="state-block hidden">
+        <div class="success-icon">✓</div>
+        <h1>Order Confirmed!</h1>
+        <p class="subtext">Thanks for ordering with 5G Foods. Your food is on its way.</p>
+
+        <div class="order-meta">
+          <div class="meta-row">
+            <span>Reference</span>
+            <span id="orderRef">—</span>
+          </div>
+          <div class="meta-row">
+            <span>Date</span>
+            <span id="orderDate">—</span>
+          </div>
+          <div class="meta-row">
+            <span>Status</span>
+            <span id="orderStatus" class="status-badge">—</span>
+          </div>
+        </div>
+
+        <div class="order-items" id="orderItems">
+          <!-- items injected here -->
+        </div>
+
+        <div class="order-total">
+          <span>Total</span>
+          <span id="orderTotal">₦0</span>
+        </div>
+
+        <div class="delivery-details" id="deliveryDetails">
+          <!-- delivery info injected here -->
+        </div>
+
+        <a href="index.html" class="btn-primary">Continue Browsing</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/order-confirmation.js"></script>
+</body>
+</html>
