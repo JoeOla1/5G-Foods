@@ -7,6 +7,8 @@ const authRoutes = require("./routes/authRoutes");
 const menuRoutes = require("./routes/menuRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
+const reservationRoutes = require('./routes/reservationRoutes');
+app.use('/reservations', reservationRoutes);
 
 const app = express();
 
