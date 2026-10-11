@@ -1,0 +1,299 @@
+:root {
+  --burnt-orange: #CC5500;
+  --orange-bright: #E8680F;
+  --matte-black: #121212;
+  --gold: #D4A017;
+  --text: #F5EFE6;
+  --text-dim: rgba(245, 239, 230, 0.72);
+  --line: rgba(245, 239, 230, 0.16);
+  --field-bg: #1a1411;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+.simple-body {
+  margin: 0;
+  background: var(--matte-black);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.simple {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse 60% 45% at 0% 100%, rgba(204, 85, 0, 0.28), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 100% 0%, rgba(212, 160, 23, 0.1), transparent 70%),
+    linear-gradient(160deg, #1a1210 0%, #121212 60%);
+}
+
+/* ---------- Top bar ---------- */
+.simple-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(18px + env(safe-area-inset-top, 0px)) clamp(16px, 5vw, 48px) 18px;
+}
+
+.simple-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.simple-brand__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(212, 160, 23, 0.5);
+}
+
+.simple-brand__name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.simple-brand__name span { color: var(--burnt-orange); }
+
+.simple-back {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.simple-back:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+
+/* ---------- Centered column ---------- */
+.simple-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px 72px;
+}
+
+.simple-col {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.simple-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 22px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  background: rgba(212, 160, 23, 0.1);
+  border: 1px solid rgba(212, 160, 23, 0.35);
+  border-radius: 50%;
+}
+
+.simple-icon--ok {
+  color: #7BD99A;
+  background: rgba(46, 160, 87, 0.12);
+  border-color: rgba(46, 160, 87, 0.4);
+}
+
+.simple-icon--warn {
+  color: #FF9A66;
+  background: rgba(204, 85, 0, 0.12);
+  border-color: rgba(204, 85, 0, 0.45);
+}
+
+.simple-col h1 {
+  margin: 0 0 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.6rem, 5vw, 1.95rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.simple-sub {
+  margin: 0 0 28px;
+  color: var(--text-dim);
+  font-size: 0.97rem;
+  line-height: 1.65;
+}
+
+.simple-sub strong {
+  color: var(--text);
+  font-weight: 500;
+  word-break: break-all;
+}
+
+/* ---------- Fields ---------- */
+.field {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.field input {
+  width: 100%;
+  height: 52px;
+  padding: 0 22px;
+  font: 400 0.98rem 'Inter', sans-serif;
+  color: var(--text);
+  background: var(--field-bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input::placeholder { color: rgba(245, 239, 230, 0.38); }
+
+.field input:focus {
+  border-color: rgba(212, 160, 23, 0.8);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.16);
+}
+
+/* Stop Chrome autofill from painting the fields light blue */
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--text);
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.field__wrap { position: relative; }
+.field__wrap input { padding-right: 82px; }
+
+.field__toggle {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  padding: 8px 14px;
+  font: 500 0.82rem 'Inter', sans-serif;
+  color: var(--text-dim);
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.field__toggle:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+
+/* ---------- Messages ---------- */
+.simple-error {
+  margin: 0 0 18px;
+  padding: 12px 18px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  text-align: left;
+  color: #FFB59C;
+  background: rgba(204, 85, 0, 0.12);
+  border: 1px solid rgba(204, 85, 0, 0.45);
+  border-radius: 18px;
+}
+
+.simple-error:empty { display: none; }
+
+/* ---------- Buttons ---------- */
+.simple-cta {
+  display: block;
+  width: 100%;
+  height: 54px;
+  line-height: 54px;
+  padding: 0;
+  font: 600 1rem/54px 'Poppins', sans-serif;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, var(--orange-bright), var(--burnt-orange));
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(204, 85, 0, 0.35);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.simple-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(204, 85, 0, 0.5);
+}
+
+.simple-cta:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.simple-cta--ghost {
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.simple-cta--ghost:hover:not(:disabled) {
+  border-color: rgba(212, 160, 23, 0.6);
+  box-shadow: none;
+}
+
+.simple-textbtn {
+  margin-top: 16px;
+  padding: 8px 14px;
+  font: 500 0.9rem 'Inter', sans-serif;
+  color: var(--gold);
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.simple-textbtn:hover { text-decoration: underline; }
+
+.simple-foot {
+  margin: 26px 0 0;
+  font-size: 0.92rem;
+  color: var(--text-dim);
+}
+
+.simple-foot a {
+  color: var(--gold);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.simple-foot a:hover { text-decoration: underline; }
+
+/* ---------- Focus ---------- */
+.simple a:focus-visible,
+.simple button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .simple-brand__name { font-size: 1.15rem; }
+  .simple-main { padding-top: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .simple-cta, .field input, .simple-back { transition: none; }
+}
