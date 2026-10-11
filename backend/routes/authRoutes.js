@@ -148,7 +148,7 @@ router.post("/google-auth", async (req, res) => {
 router.post("/forgot-password", async (req, res) => {
   // Same reply every time, so nobody can use this form to find out who has an account.
   const genericReply = {
-    message: "If an account exists for that email, we've sent a password reset link.",
+    message: "We've sent a password reset link.",
   };
 
   try {
