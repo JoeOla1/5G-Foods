@@ -1,36 +1,70 @@
 /* =========================================================
    5G FOODS — LOGIN.JS
    Handles: client-side validation, submission to backend
+   Load AFTER config.js
    ========================================================= */
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
 
   var form = document.getElementById('loginForm');
-  var errorBox = document.getElementById('loginError');
+  if (!form) return;
+
+  var errorBox = document.getElementById('authError') || document.getElementById('loginError');
   var successBox = document.getElementById('loginSuccess');
 
-  if (!form) return;
+  function showError(message) {
+    if (successBox) successBox.textContent = '';
+    if (errorBox) errorBox.textContent = message;
+    else alert(message);
+  }
+
+  function showSuccess(message) {
+    if (errorBox) errorBox.textContent = '';
+    if (successBox) successBox.textContent = message;
+  }
+
+  // If the user already has a valid session, skip the login page
+  var existingToken = localStorage.getItem('token');
+  if (existingToken && typeof BACKEND_URL !== 'undefined') {
+    fetch(BACKEND_URL + '/me', {
+      headers: { 'Authorization': 'Bearer ' + existingToken }
+    })
+      .then(function (res) {
+        if (res.ok) window.location.href = 'index.html';
+        else if (res.status === 401 || res.status === 403) localStorage.removeItem('token');
+      })
+      .catch(function () { /* server asleep or offline: stay on the login page */ });
+  }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    errorBox.textContent = '';
-    successBox.textContent = '';
+    if (errorBox) errorBox.textContent = '';
+    if (successBox) successBox.textContent = '';
 
     var email = document.getElementById('email').value.trim();
     var password = document.getElementById('password').value;
 
     if (!email || !password) {
-      errorBox.textContent = 'Please fill in all fields.';
+      showError('Please fill in all fields.');
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('Please enter a valid email address.');
+      return;
+    }
+
+    if (typeof BACKEND_URL === 'undefined') {
+      showError('Something is not set up correctly. Please refresh and try again.');
       return;
     }
 
     var submitBtn = form.querySelector('button[type="submit"]');
+    var redirecting = false;
     submitBtn.disabled = true;
     submitBtn.textContent = 'Logging in...';
 
-    fetch(`${BACKEND_URL}/login`, {
+    fetch(BACKEND_URL + '/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email, password: password })
@@ -45,17 +79,21 @@ document.addEventListener('DOMContentLoaded', function () {
         // Save the token so the user stays logged in across pages/refreshes
         localStorage.setItem('token', data.token);
 
-        successBox.textContent = 'Login successful! Redirecting...';
+        redirecting = true;
+        showSuccess('Login successful! Redirecting...');
         setTimeout(function () {
           window.location.href = 'index.html';
-        }, 2000);
+        }, 1200);
       })
       .catch(function (err) {
-        errorBox.textContent = err.message || 'Something went wrong. Please try again.';
+        showError(err.message || 'Something went wrong. Please try again.');
       })
       .finally(function () {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Login';
+        // Keep the button locked while redirecting
+        if (!redirecting) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Log in';
+        }
       });
   });
 

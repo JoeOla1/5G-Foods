@@ -3,6 +3,7 @@
    Handles: checking if user is logged in (via saved token),
    and updating the navbar to show their name + logout button
    instead of the "Login" link.
+   Load AFTER config.js on every page that has the navbar.
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -13,30 +14,35 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!navActions && !mobileNavActions) return; // this page has no nav actions areas
 
   var token = localStorage.getItem('token');
+  if (!token) return; // Not logged in — leave the Login link as-is
 
-  if (!token) {
-    // Not logged in — leave the existing Login links as-is
+  if (typeof BACKEND_URL === 'undefined') {
+    console.warn('auth-ui.js: BACKEND_URL is missing. Load js/config.js before auth-ui.js.');
     return;
   }
 
   // We have a token — check with the backend that it's still valid
-  fetch(`${BACKEND_URL}/me`, {
+  fetch(BACKEND_URL + '/me', {
     method: 'GET',
-    headers: {
-      'Authorization': 'Bearer ' + token
-    }
+    headers: { 'Authorization': 'Bearer ' + token }
   })
     .then(function (res) {
-      if (!res.ok) throw new Error('Invalid session');
+      if (res.status === 401 || res.status === 403) {
+        // Server says the token is expired/invalid — clear it
+        localStorage.removeItem('token');
+        throw new Error('Invalid session');
+      }
+      if (!res.ok) throw new Error('Server error');
       return res.json();
     })
     .then(function (data) {
+      if (!data || !data.user) return;
       if (navActions) showLoggedInState(navActions, data.user);
       if (mobileNavActions) showLoggedInState(mobileNavActions, data.user);
     })
     .catch(function () {
-      // Token is expired/invalid — clear it and leave Login button as-is
-      localStorage.removeItem('token');
+      // Network error or server asleep: leave the Login link showing.
+      // The token is only removed above when the server rejects it.
     });
 
   function showLoggedInState(container, user) {
@@ -52,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var logoutBtn = document.createElement('a');
     logoutBtn.href = '#';
-    logoutBtn.className = 'btn btn--ghost';
+    logoutBtn.className = 'nav__logout';
     logoutBtn.textContent = 'Logout';
     logoutBtn.addEventListener('click', function (e) {
       e.preventDefault();

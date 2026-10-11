@@ -1,52 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="./css/login-style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in | 5G Foods</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://accounts.google.com/gsi/client" async defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Inter:wght@400;500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/login-style.css">
 </head>
-<body>
+<body class="auth-body">
 
-<div class="page-logo">
-    <img src="./images/5g logo.jpeg" alt="5g logo" height="100" width="100" style="position: absolute; top: 10px; left: 10px;">
-</div>        
-    
-    <div class="login-box">
-        <h1>Login</h1>
+  <main class="auth">
 
-        <form id="loginForm">
-            <label for="email">Email</label>
-            <input type="email" required placeholder="Email" id="email" name="email">
-            
-            <br /><label for="password">Password</label>
-            <input type="password" required name="password" id="password">
+    <!-- LEFT: form -->
+    <section class="auth-form-side">
+      <div class="auth-top">
+        <a href="index.html" class="auth-brand" aria-label="5G Foods home">
+          <img src="images/logo/logo.png" alt="" class="auth-brand__logo" width="44" height="44">
+          <span class="auth-brand__name">5G <span>Foods</span></span>
+        </a>
+        <a href="index.html" class="auth-back">Back to home</a>
+      </div>
 
-            <div id="loginError" class="form-error"></div>
-            <div id="loginSuccess" class="form-success"></div>
+      <div class="auth-main">
+        <div class="auth-card">
+          <h1>Welcome back</h1>
+          <p class="auth-sub">Log in to see your cart, track orders, and book a table.</p>
 
-            <div class="login-btn">
-            <br /><button type="submit">Login</button>
+          <!-- MOBILE ONLY: image banner inside the card (hidden on desktop) -->
+          <div class="auth-banner" aria-hidden="true">
+            <img src="images/snail.jpg" alt="" class="auth-banner__img" loading="lazy">
+            <p class="auth-banner__tagline">Best Bite, Your Delight</p>
+          </div>
+
+          <form id="loginForm" novalidate>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com"
+                     autocomplete="email" required>
             </div>
-        </form>
 
-        <div class="divider">or continue with</div>
+            <div class="field field--password">
+              <div class="field__row">
+                <label for="password">Password</label>
+                <a href="forgot-password.html" class="field__link">Forgot password?</a>
+              </div>
+              <div class="field__wrap">
+                <input type="password" id="password" name="password" placeholder="Enter your password"
+                       autocomplete="current-password" required>
+                <button type="button" class="field__toggle" id="togglePassword"
+                        aria-label="Show password" aria-pressed="false">Show</button>
+              </div>
+            </div>
 
-        <div id="googleButtonContainer" style="display:flex; justify-content:center;"></div>
-    </div>
+            <p class="auth-error" id="authError" role="alert"></p>
+            <p class="auth-success" id="loginSuccess" role="status"></p>
+            <button type="submit" class="auth-cta" id="loginBtn">Log in</button>
+          </form>
 
-    <p class="signup-link">
-  Don't have an account?
-  <a href="signup.html">Sign Up</a>
-</p>
+          <div class="auth-divider"><span>or continue with</span></div>
 
-<script src="js/config.js"></script>
-<script src="js/login.js"></script>
-<script src="js/google-auth.js"></script>
+          <!-- Google renders its round icon button in here -->
+          <div class="auth-google" id="googleButtonContainer" data-google-style="icon"></div>
+
+          <p class="auth-switch">New to 5G Foods? <a href="signup.html">Create an account</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: visual panel (desktop only) -->
+    <aside class="auth-visual" aria-hidden="true">
+      <img src="images/snail.jpg" alt="" class="auth-visual__img">
+      <div class="auth-visual__copy">
+        <p class="auth-visual__tagline">Best Bite, Your Delight</p>
+        <p class="auth-visual__text">Bold flavours, open-flame cooking, and a warm room to enjoy them in.</p>
+      </div>
+    </aside>
+
+  </main>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="js/config.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/google-auth.js"></script>
+
+  <script>
+    // Show / hide password
+    (function () {
+      var input = document.getElementById('password');
+      var toggle = document.getElementById('togglePassword');
+      if (!input || !toggle) return;
+      toggle.addEventListener('click', function () {
+        var show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        toggle.textContent = show ? 'Hide' : 'Show';
+        toggle.setAttribute('aria-pressed', String(show));
+        toggle.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+      });
+    })();
+  </script>
 </body>
 </html>

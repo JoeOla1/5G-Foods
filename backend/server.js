@@ -8,13 +8,14 @@ const menuRoutes = require("./routes/menuRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const reservationRoutes = require('./routes/reservationRoutes');
-app.use('/reservations', reservationRoutes);
+
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+app.use('/reservations', reservationRoutes);
 console.log("MongoDB URI:", process.env.MONGODB_URI);
 
 // Connect to MongoDB
